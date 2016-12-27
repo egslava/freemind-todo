@@ -33,10 +33,16 @@ describe("MindMap Leaf Extractor (TODO-like)", () =>{
         expect(leafs).to.deep.equal(data.with_lists_out)
     });
 
-    it("Also works with hierachical lists", () => {
+    it("Works with hierachical lists", () => {
         const mm = data.with_list_hierachy_in['map'];
         const leafs = node.leafs(mm);
         expect(leafs).to.deep.equal(data.with_list_hieracy_out1)
+    });
+
+    it("takes into account when tasks are completed", () => {
+        const mm = data.with_lists_stops_oks_in['map'];
+        const leafs = node.leafs(mm);
+        expect(leafs).to.deep.equal(data.with_lists_stops_oks_out)
     });
 
     it("Doesn't corrupt files", () =>{

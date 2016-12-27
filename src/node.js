@@ -33,6 +33,7 @@ function hasIcon(node, name){
 }
 
 function isStopped(node){ return hasIcon(node, 'stop-sign')}
+function isSequential(node) { return hasIcon(node, 'list') }
 
 function leafs(json){
     let result = [];

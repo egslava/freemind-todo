@@ -9,7 +9,7 @@ const
     parseXml = xml2js.parseString,
     XmlBuilder = xml2js.Builder;
 
-const mindmap = 'test/maps/with_list_hierachy.mm';
+const mindmap = 'test/maps/with_hierachical_lists_stops_oks.mm';
 
 fs.readFile(mindmap, (err, xmlString) => {
     if (err) throw err;
