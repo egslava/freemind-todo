@@ -1,7 +1,7 @@
 'use strict';
 
 
-const Node = require('./src/Node');
+const Node = require('./src/node');
 
 const
     fs = require('fs'),
@@ -9,7 +9,7 @@ const
     parseXml = xml2js.parseString,
     XmlBuilder = xml2js.Builder;
 
-const mindmap = 'sample-mindmap.mm';
+const mindmap = 'test/maps/with_list_hierachy.mm';
 
 fs.readFile(mindmap, (err, xmlString) => {
     if (err) throw err;
@@ -19,14 +19,16 @@ fs.readFile(mindmap, (err, xmlString) => {
 
         const leafs = Node.leafs( json['map'] );
 
-        leafs.forEach((leaf)=>{
+        leafs.forEach( (leaf) => {
            console.log(leaf['TEXT'])
         });
+
+        console.log(JSON.stringify(json));
         // leafs[0]['TEXT'] = "BLAAAAH";
 
         const xml = new XmlBuilder().buildObject(json);
 
-        fs.writeFile(mindmap, xml);
+        // fs.writeFile(mindmap, xml);
 
         console.log(xml);
     });
