@@ -32,18 +32,61 @@ function hasIcon(node, name){
     return false;
 }
 
-function isStopped(node){ return hasIcon(node, 'stop-sign')}
-function isSequential(node) { return hasIcon(node, 'list') }
 
-function leafs(json){
+function isOk(node){ return hasIcon(node, 'button_ok')}
+function isStopped(node){ return hasIcon(node, 'stop-sign')}
+function isList(node) { return hasIcon(node, 'list') }
+
+// function getFirstFromList(node) {
+//
+//     let result = [];
+//
+//     if (isStopped(node)) return [];
+//
+//     if (node.hasOwnProperty('node')) {
+//         node['node'].forEach(sub_node => {
+//             if (result.length == 0){
+//                 return;
+//             }
+//             const leafs = module.exports.leafs(sub_node);
+//             if (leafs.length != 0){
+//                 result = result.concat(leafs)
+//             }
+//         });
+//     } else {
+//         result.push(node['$'])
+//     }
+//
+//     switch (result.length) {
+//         case  0:
+//             result.push(node['$']);
+//             break;
+//         case 1:
+//             return result;
+//         default:
+//             return [result[0]]
+//     }
+// }
+
+function leafs(node){
     let result = [];
 
-    if ( isStopped(json) ) return [];
+    if ( isStopped(node) ) return [];
+    if ( isOk(node) ) return [];
 
-    if (json.hasOwnProperty('node')){
-        json['node'].forEach( node => result = result.concat(leafs(node)) );
-    } else {
-        result.push(json['$'])
+    // if ( isList(node) ){
+    //     return getFirstFromList(node)
+    // }
+
+    if (node.hasOwnProperty('node')){
+        node['node'].forEach( sub_node => {
+            if (isList(node) && result.length > 0) return; // continue...
+            result = result.concat(leafs(sub_node))
+        } );
+    }
+
+    if (result.length == 0) {
+        result.push(node['$'])
     }
 
     return result;

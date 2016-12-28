@@ -306,11 +306,6 @@ module.exports.with_lists_out = [{
     "MODIFIED": "1482820673355",
     "TEXT": "one"
 }, {
-    "CREATED": "1482820673693",
-    "ID": "ID_1532930210",
-    "MODIFIED": "1482820674855",
-    "TEXT": "two"
-}, {
     "CREATED": "1482854601858",
     "ID": "ID_1428302851",
     "MODIFIED": "1482854604763",

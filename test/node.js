@@ -46,6 +46,20 @@ describe("MindMap Leaf Extractor (TODO-like)", () =>{
     });
 
     it("Doesn't corrupt files", () =>{
+        // the only difference - spaces. So I should serialize XML without spaces and ensure that it's the same
         fail("Not implemented")
     });
+
+    it("doesn't quit from a lambda when return is used", () =>{
+        const arr1 = [1,2,3,4,5];
+        const arr2 = [];
+
+        arr1.forEach((elem)=>{
+            arr2.push(elem);
+            return;
+        });
+
+
+        expect(arr1).to.deep.equal(arr2)
+    })
 });
