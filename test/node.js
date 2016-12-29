@@ -45,6 +45,14 @@ describe("MindMap Leaf Extractor (TODO-like)", () =>{
         expect(leafs).to.deep.equal(data.with_lists_stops_oks_out)
     });
 
+    describe("System tests", () => {
+        it("correctly look for a node by ID", () => {
+            const mm = data.simple_in['map'];
+            const a_node = node.nodeById(mm, data.simple_find_by_id_id);
+            expect(a_node).to.deep.equal(data.simple_find_by_id_out)
+        });
+    });
+
     it("Doesn't corrupt files", () =>{
         // the only difference - spaces. So I should serialize XML without spaces and ensure that it's the same
         fail("Not implemented")

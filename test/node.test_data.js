@@ -56,6 +56,16 @@ module.exports.simple_in = {
     }
 };
 
+module.exports.simple_find_by_id_id = "ID_1532930210";
+module.exports.simple_find_by_id_out = {
+    "$": {
+        "CREATED": "1482820673693",
+        "ID": "ID_1532930210",
+        "MODIFIED": "1482820674855",
+        "TEXT": "two"
+    }
+}
+
 module.exports.simple_leaves = [{
     "CREATED": "1482820670156",
     "ID": "ID_564200090",
@@ -549,3 +559,4 @@ module.exports.with_lists_stops_oks_out = [{
     "MODIFIED": "1482820674855",
     "TEXT": "two"
 }];
+

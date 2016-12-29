@@ -11,7 +11,9 @@ const
     parseXml = xml2js.parseString,
     XmlBuilder = xml2js.Builder;
 
-const mindmap = 'sample-mindmap.mm';
+const mindmap = 'sosimple.mm';
+
+const hint = "There're your current tasks. Please, mark them after completion when you're done.";
 
 fs.readFile(mindmap, (err, xmlString) => {
     if (err) throw err;
@@ -20,6 +22,8 @@ fs.readFile(mindmap, (err, xmlString) => {
         if (err){ throw err}
 
         const leafs = Node.leafs( json['map'] );
+
+        // console.log(JSON.stringify(json));
 
         // leafs.forEach( (leaf) => {
         //    console.log(leaf['TEXT'])
@@ -30,12 +34,24 @@ fs.readFile(mindmap, (err, xmlString) => {
         // console.log(leafs.map((it)=>JSON.stringify(it)).join(","));
         // leafs[0]['TEXT'] = "BLAAAAH";
 
-        const xml = new XmlBuilder()
-            .buildObject(json);
 
-        // fs.writeFile(mindmap, xml);
-        ui.checkTasksPrompt(leafs);
+        ui.checkTasksPrompt(hint, leafs, json['map'], ()=>{
+            console.log('1');
+            const xml = new XmlBuilder().buildObject(json);
+            fs.writeFile(mindmap, xml, null, (data, err)=>{
+                // console.log(err);
+
+            });
+        });
+
 
         // console.log(xml);
     });
 });
+
+// TODO: ensure file is not corrupted: https://www.npmjs.com/package/xml2js
+// TODO: paths to leaf: English -> Grammar -> Unit 1
+// TODO: lessons to finish (1 / 33 ) English -> Grammar -> Unit 2)
+// TODO: congrats: "congrats you've finished grammar section completely" and mark parent as completed also
+// NO, FAIL. Shouldn't do it, because, perhaps, all completed tasks it's the good reason to add new, instead of marking
+// parent as completed.

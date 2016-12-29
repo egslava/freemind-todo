@@ -74,10 +74,6 @@ function leafs(node){
     if ( isStopped(node) ) return [];
     if ( isOk(node) ) return [];
 
-    // if ( isList(node) ){
-    //     return getFirstFromList(node)
-    // }
-
     if (node.hasOwnProperty('node')){
         node['node'].forEach( sub_node => {
             if (isList(node) && result.length > 0) return; // continue...
@@ -92,4 +88,23 @@ function leafs(node){
     return result;
 }
 
+/** Finds node by its ID. This function doesn't take into account stops/oks/lists/so forth. */
+function nodeById(node, id){
+    if (
+        node.hasOwnProperty('$')
+        && node['$'].hasOwnProperty('ID') // for the root node.
+        && node['$']['ID'] == id) return node;
+
+    let result = null;
+    if (node.hasOwnProperty('node')){
+        node['node'].forEach( sub_node => {
+            if (result != null) return;
+            result = nodeById(sub_node, id);
+        } );
+    }
+
+    return result;
+}
+
 module.exports.leafs = leafs;
+module.exports.nodeById = nodeById;
