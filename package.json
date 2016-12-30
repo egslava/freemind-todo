@@ -27,8 +27,6 @@
   "homepage": "https://github.com/egslava/freemind-todo#readme",
   "dependencies": {
     "chai": "^3.5.0",
-    "cli-color": "^1.1.0",
-    "clui": "^0.3.1",
     "inquirer": "^2.0.0",
     "instance-of": "^1.0.5",
     "mocha": "^3.2.0",

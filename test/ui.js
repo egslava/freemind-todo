@@ -8,8 +8,8 @@ let data = require('./ui.test_data'),
 
 let expect = require('chai').expect;
 
-describe("CLI-related", () =>{
-    it("marks chosen tasks in JSON ('ok' icon is always first)", () =>{
+describe("CLI-related", function () {
+    it("marks chosen tasks in JSON ('ok' icon is always first)", function () {
         const mm = data.test_mark_ok1_mindmap['map'];
         ui.mark_ok(mm, data.test_mark_ok1_userinput);
         expect(data.test_mark_ok1_mindmap).to.deep.equal(data.test_mark_ok1_mindmap_out)
