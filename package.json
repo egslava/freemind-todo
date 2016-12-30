@@ -1,12 +1,15 @@
 {
   "name": "freemind-todo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple todo-list from your favourite FreeMind mindmap",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
-  "repository": {
+  "bin":{
+      "freemind-mm": "./index.js"
+  }
+  ,"repository": {
     "type": "git",
     "url": "git+https://github.com/egslava/freemind-todo.git"
   },

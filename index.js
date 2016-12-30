@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 'use strict';
 
 
@@ -36,7 +37,7 @@ fs.readFile(mindmap, (err, xmlString) => {
 
 
         ui.checkTasksPrompt(hint, leafs, json['map'], ()=>{
-            console.log('1');
+            // console.log('1');
             const xml = new XmlBuilder().buildObject(json);
             fs.writeFile(mindmap, xml, null, (data, err)=>{
                 // console.log(err);
@@ -49,6 +50,8 @@ fs.readFile(mindmap, (err, xmlString) => {
     });
 });
 
+// TODO: FreeMind new file format
+// TODO: process the case when there're no any tasks available (all are done)
 // TODO: ensure file is not corrupted: https://www.npmjs.com/package/xml2js
 // TODO: paths to leaf: English -> Grammar -> Unit 1
 // TODO: lessons to finish (1 / 33 ) English -> Grammar -> Unit 2)

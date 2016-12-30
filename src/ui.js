@@ -28,7 +28,6 @@ let inquirer = require('inquirer'),
 function mark_ok(tasks, marked){
     const marks = marked['tasks'];
 
-    console.log(tasks);
     const icon = {
         '$' : {
             'BUILTIN': 'button_ok'
@@ -60,6 +59,7 @@ function checkTasksPrompt(message, tasks, tree, callback) {
             message: message,
             name: 'tasks',
             choices: labels,
+            pageSize: 10,
             validate: answer =>{
                 if (answer.length < 1) {
                     return 'You must choose at least one topping.';
