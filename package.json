@@ -1,6 +1,6 @@
 {
   "name": "freemind-todo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple todo-list from your favourite FreeMind mindmap",
   "main": "index.js",
   "scripts": {
