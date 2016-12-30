@@ -53,6 +53,20 @@ describe("MindMap Leaf Extractor (TODO-like)", function () {
         });
     });
 
+    describe("An info about task", function() {
+        it("gives full path", function() {
+
+            const mm = data.simple_in['map'];
+            const tasks = data.simple_some_tasks;
+
+            const paths = [0,1,2].map( i =>
+                node.getPath(mm, tasks[i].ID).map( it => it['$']['TEXT'] ).join(" -> ")
+            );
+
+            expect(paths).to.deep.equal(data.simple_some_tasks_paths)
+        });
+    });
+
     it("doesn't quit from a lambda when return is used", function() {
         const arr1 = [1, 2, 3, 4, 5];
         const arr2 = [];

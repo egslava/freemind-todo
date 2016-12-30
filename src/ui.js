@@ -50,8 +50,8 @@ function mark_ok(tasks, marked){
 }
 
 function checkTasksPrompt(message, tasks, tree, callback) {
-    const labels = tasks.map( (it) => {
-        return { name: it.TEXT, value: it.ID}
+    const labels = tasks.map( (task) => {
+        return { name: Node.getPath(tree, task.ID).map(node => node['$'].TEXT).join(" -> "), value: task.ID}
     });
     inquirer.prompt([
         {

@@ -64,7 +64,19 @@ module.exports.simple_find_by_id_out = {
         "MODIFIED": "1482820674855",
         "TEXT": "two"
     }
-}
+};
+
+module.exports.simple_some_tasks = [
+    { "CREATED": "1482820651650", "ID": "ID_395714193", "MODIFIED": "1482820662638", "TEXT": "so simple"},
+    { "CREATED": "1482820663374", "ID": "ID_1314005069","MODIFIED": "1482820666799", "POSITION": "right", "TEXT": "first"},
+    { "CREATED": "1482820670156", "ID": "ID_564200090", "MODIFIED": "1482820673355", "TEXT": "one" },
+];
+
+module.exports.simple_some_tasks_paths = [
+    "so simple",    // for the root element it should contain its name
+    "first",        // but other elements shouldn't duplicate the root again and again
+    "first -> one"
+];
 
 module.exports.simple_leaves = [{
     "CREATED": "1482820670156",
