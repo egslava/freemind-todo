@@ -30,11 +30,8 @@
     "cli-color": "^1.1.0",
     "clui": "^0.3.1",
     "inquirer": "^2.0.0",
-    "inquirer-longer": "^0.5.0",
     "instance-of": "^1.0.5",
     "mocha": "^3.2.0",
-    "prompt-checkbox": "^0.4.2",
-    "prompt-question": "^0.4.0",
     "xml2js": "^0.4.17"
   }
 }

@@ -9,15 +9,11 @@ const
 const
     fs = require('fs'),
     xml2js = require('xml2js'),
-    parseXml = xml2js.parseString,
-    XmlBuilder = xml2js.Builder;
+    parseXml = xml2js.parseString;
 
 const mindmap = 'sosimple.mm';
 
 const hint = "There're your current tasks. Please, mark them after completion when you're done.";
-
-let xmler = new XmlBuilder({ 'headless': true });    // `new` FreeMind format :-)
-module.exports.xmler = xmler;   // for testing
 
 fs.readFile(mindmap, (err, xmlString) => {
     if (err) throw err;
@@ -29,7 +25,7 @@ fs.readFile(mindmap, (err, xmlString) => {
 
         ui.checkTasksPrompt(hint, leafs, json['map'], ()=>{
             // console.log('1');
-            const xml = xmler.buildObject(json);
+            const xml = node.xmler.buildObject(json);
             fs.writeFile(mindmap, xml, null, (data, err)=>{
                 // console.log(err);
 

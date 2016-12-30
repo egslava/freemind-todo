@@ -6,7 +6,9 @@
  * Why? Because JSON can be easily converted to XML again.
  */
 
-const instanceOf = require('instance-of');
+const instanceOf = require('instance-of'),
+    XmlBuilder = require('xml2js').Builder;
+
 
 /*
 {
@@ -108,3 +110,4 @@ function nodeById(node, id){
 
 module.exports.leafs = leafs;
 module.exports.nodeById = nodeById;
+module.exports.xmler = new XmlBuilder({ 'headless': true });    // `new` FreeMind format :-)
