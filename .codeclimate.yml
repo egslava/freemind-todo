@@ -12,6 +12,9 @@ engines:
     enabled: true
   fixme:
     enabled: true
+    checks:
+      TODO:
+        enabled: false
 ratings:
   paths:
   - "**.inc"
