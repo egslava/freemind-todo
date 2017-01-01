@@ -28,7 +28,7 @@ const instanceOf = require('instance-of'),
 
 function hasIcon(node, name){
     if (node.hasOwnProperty('icon')){
-        return node['icon'].find( icon => icon['$']['BUILTIN'] == name)
+        return node['icon'].find( icon => icon['$']['BUILTIN'] === name)
     }
 
     return false;
@@ -52,7 +52,7 @@ function leafs(node){
         } );
     }
 
-    if (result.length == 0) {
+    if (result.length === 0) {
         result.push(node['$'])
     }
 
@@ -64,25 +64,28 @@ function getPath(node, id){
     if (
         node.hasOwnProperty('$')
         && node['$'].hasOwnProperty('ID') // for the root node.
-        && node['$']['ID'] == id) return [node];
+        && node['$']['ID'] === id) return [node];
 
 
-    let result = [];
+    let path = [];
+
     if (node.hasOwnProperty('node')){
-        node['node'].forEach( sub_node => {
-            if (result.length != 0) return;
-            result = getPath(sub_node, id);
+        node['node'].some( sub_node => {
+            if (path.length !== 0) return true;   // break
+            path = getPath(sub_node, id);
         } );
     }
 
-    if (result.length == 0) return [];  // if nothing is found, just null
+    // use some to break this cycle
 
-    if (!node.hasOwnProperty('$') || !node['$'].hasOwnProperty('ID')){
-        // root node.
-        if (result.length > 1) result = result.slice(0, result.length - 1);
-        return result.reverse();
+    if (path.length === 0) return [];  // if nothing is found, just null
+
+    if (node.hasOwnProperty('$') && node['$'].hasOwnProperty('ID')){
+        return path.concat(node);
     } else {
-        return result.concat(node);
+        // root node.
+        if (path.length > 1) path = path.slice(0, path.length - 1);
+        return path.reverse();
     }
 }
 
