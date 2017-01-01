@@ -53,13 +53,14 @@ function checkTasksPrompt(message, tasks, tree, callback) {
     const labels = tasks.map( (task) => {
         return { name: Node.getPath(tree, task.ID).map(node => node['$'].TEXT).join(" -> "), value: task.ID}
     });
+    labels.push(new inquirer.Separator());
     inquirer.prompt([
         {
             type: 'checkbox',
             message: message,
             name: 'tasks',
             choices: labels,
-            pageSize: 10,
+            pageSize: 18,
             validate: answer =>{
                 if (answer.length < 1) {
                     return 'You must choose at least one topping.';
