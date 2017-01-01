@@ -1,8 +1,9 @@
 'use strict';
 
-let expect = require('chai').expect;
-let data = require("./node.test_data");
-let node= require("../src/node");
+const
+    expect = require('chai').expect,
+    data = require("./node.test_data"),
+    node = require("../src/node");
 
 describe("Works with files (virtual / non-real files)", function () {
 
@@ -16,4 +17,4 @@ describe("Works with files (virtual / non-real files)", function () {
     // the only difference - spaces. So I should serialize XML without spaces and ensure that it's the same
     // fail("Not implemented")
     // });
-})
+});
