@@ -1,8 +1,11 @@
 'use strict';
 
-let expect = require('chai').expect;
-let node = require("../src/node");
-let data = require("./node.test_data");
+const expect = require('chai').expect;
+const node = require("../src/node");
+const data = require("./node.test_data");
+
+const xml2js = require('xml2js'),
+    parseXml = xml2js.parseString;
 
 describe("MindMap Leaf Extractor (TODO-like)", function () {
 
@@ -46,11 +49,18 @@ describe("MindMap Leaf Extractor (TODO-like)", function () {
     });
 
     describe("System tests", function() {
-        it("correctly look for a node by ID", function() {
+        it("correctly looks for a node by ID", function() {
             const mm = data.simple_in['map'];
             const a_node = node.nodeById(mm, data.simple_find_by_id_id);
             expect(a_node).to.deep.equal(data.simple_find_by_id_out)
         });
+
+        it("can return tree as a list", function() {
+            const _in = data.map_without_ids['map'];
+            const list = node.nodeList(_in).map( it => it['$']);
+            expect(list).to.deep.equal(data.map_without_ids_list);
+        });
+
     });
 
     describe("An info about task", function() {
@@ -60,23 +70,24 @@ describe("MindMap Leaf Extractor (TODO-like)", function () {
             const tasks = data.simple_some_tasks;
 
             const paths = [0,1,2].map( i =>
-                node.getPath(mm, tasks[i].ID).map( it => it['$']['TEXT'] ).join(" -> ")
+                node.strPath(mm, tasks[i].ID)
             );
 
             expect(paths).to.deep.equal(data.simple_some_tasks_paths)
         });
     });
 
-    it("doesn't quit from a lambda when return is used", function() {
-        const arr1 = [1, 2, 3, 4, 5];
-        const arr2 = [];
+    it("works even if some nodes don't have IDs (FreeMind-specific)", function(done) {
+        node.freemindFix(data.map_without_ids['map'], _in =>{
+            const list = node.nodeList(_in);
+            node.fixMeta(list);
 
-        arr1.forEach((elem) => {
-            arr2.push(elem);
-            return;
+            const leaves = node.leafs(_in);
+            const paths = leaves.map(leaf => node.strPath(_in, leaf.ID));
+
+            node.clearMeta(list);
+            expect(paths).to.deep.equal(data.map_without_ids_out);
+            done();
         });
-
-
-        expect(arr1).to.deep.equal(arr2)
-    })
+    });
 });

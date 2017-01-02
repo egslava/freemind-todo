@@ -572,3 +572,54 @@ module.exports.with_lists_stops_oks_out = [{
     "TEXT": "two"
 }];
 
+module.exports.map_without_ids = {
+    "map": {
+        "$": {"version": "1.1.0"},
+        "node": [{
+            "$": {
+                "CREATED": "1482728118177",
+                "ID": "ID_1405131310",
+                "MODIFIED": "1482728166599",
+                "TEXT": "career"
+            },
+            "node": [{
+                "$": {
+                    "CREATED": "1483311814983",
+                    "MODIFIED": "1483311814988",
+                    "TEXT": "one"
+                }
+            }, {
+                "$": {
+                    "CREATED": "1483311814989",
+                    "MODIFIED": "1483311814993",
+                    "TEXT": "two"
+                }
+            }]
+        }]
+    }
+};
+
+module.exports.map_without_ids_list = [{
+    "CREATED": "1482728118177",
+    "ID": "ID_1405131310",
+    "MODIFIED": "1482728166599",
+    "TEXT": "career"
+},{
+    "CREATED": "1483311814983",
+    "MODIFIED": "1483311814988",
+    "TEXT": "one"
+}, {
+    "CREATED": "1483311814989",
+    "MODIFIED": "1483311814993",
+    "TEXT": "two"
+}]
+module.exports.map_without_ids_leaves = [{
+    "CREATED": "1483311814983",
+    "MODIFIED": "1483311814988",
+    "TEXT": "one"
+}, {
+    "CREATED": "1483311814989",
+    "MODIFIED": "1483311814993",
+    "TEXT": "two"
+}];
+module.exports.map_without_ids_out = ['one', 'two'];
