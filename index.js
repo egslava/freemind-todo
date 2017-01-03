@@ -11,7 +11,7 @@ const
     xml2js = require('xml2js'),
     parseXml = xml2js.parseString;
 
-const mindmap = 'test/maps/issue2.mm';
+const mindmap = 'sosimple.mm';
 
 const hint = "There're your current tasks. Please, mark them after completion when you're done.";
 
@@ -21,16 +21,20 @@ fs.readFile(mindmap, (err, xmlString) => {
     parseXml(xmlString, (err, json) => {
         if (err){ throw err}
 
-        Node.freemindFix(json['map'], _in => {
-            const leafs = Node.leafs( _in );
+        const _in = json['map'];
+        const nodes = Node.nodeList(_in);
+        Node.fixMeta(nodes);
 
-            ui.checkTasksPrompt(hint, leafs, _in, ()=>{
-                // console.log('1');
-                const xml = Node.xmler.buildObject(json);
-                fs.writeFile(mindmap, xml, null, (data, err)=>{
-                    // console.log(err);
+        const leafs = Node.leafs( _in );
 
-                });
+        ui.checkTasksPrompt(hint, leafs, _in, ()=>{
+            // console.log('1');
+            const xml = Node.xmler.buildObject(json);
+
+            Node.clearMeta(nodes);
+            fs.writeFile(mindmap, xml, null, (data, err)=>{
+                // console.log(err);
+
             });
         });
 

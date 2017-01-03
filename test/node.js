@@ -77,17 +77,15 @@ describe("MindMap Leaf Extractor (TODO-like)", function () {
         });
     });
 
-    it("works even if some nodes don't have IDs (FreeMind-specific)", function(done) {
-        node.freemindFix(data.map_without_ids['map'], _in =>{
-            const list = node.nodeList(_in);
-            node.fixMeta(list);
+    it("works even if some nodes don't have IDs (FreeMind-specific)", function() {
+        const _in = data.map_without_ids['map'];
+        const list = node.nodeList(_in);
+        node.fixMeta(list);
 
-            const leaves = node.leafs(_in);
-            const paths = leaves.map(leaf => node.strPath(_in, leaf.ID));
+        const leaves = node.leafs(_in);
+        const paths = leaves.map(leaf => node.strPath(_in, leaf.ID));
 
-            node.clearMeta(list);
-            expect(paths).to.deep.equal(data.map_without_ids_out);
-            done();
-        });
+        node.clearMeta(list);
+        expect(paths).to.deep.equal(data.map_without_ids_out);
     });
 });
