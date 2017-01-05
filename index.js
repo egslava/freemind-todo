@@ -11,7 +11,7 @@ const
     xml2js = require('xml2js'),
     parseXml = xml2js.parseString;
 
-const mindmap = 'sosimple.mm';
+const mindmap = 'test/maps/with_stops.mm';
 
 const hint = "There're your current tasks. Please, mark them after completion when you're done.";
 

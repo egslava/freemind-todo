@@ -139,4 +139,42 @@ module.exports.test_mark_ok1_mindmap_out = {
             }]
         }]
     }
-}
+};
+
+module.exports.test_remove_common_prefixes_in = `
+            daily -> Full-Stack -> Tools -> WebPack -> Introduction
+            daily -> Full-Stack -> Tools -> SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)
+            daily -> English -> Listenings -> https://www.englishclub.com/listening/dictation.htm
+            daily -> English -> Pronunciation -> engfluent.com > English-pronunciation-exercises-main-sounds
+            daily -> English -> Grammar -> other/another
+            daily -> English -> Reading -> Soft Skills (50+)
+            daily -> Full-Stack -> Native Script -> Tutorial -> Install
+            daily -> Full-Stack -> Angular.io -> 3. Overview of Architecture
+            daily -> Full-Stack -> Express -> Advanced -> Routing
+            daily -> Full-Stack -> Testing -> http://pioneerjs.com/
+            daily -> Full-Stack -> Testing -> Integration Tests
+            daily -> Full-Stack -> Cucumber
+            daily -> Full-Stack -> Tools -> gremlins.js
+            daily -> Full-Stack -> ReactJS -> docs -> quickstart -> Introducing JSX
+            ideas -> ambal -> clone to excel
+            ideas -> freemind-todo -> show no more than N in one subcategory
+        `.trim().replace(/^\s*/gm, "").split("\n");
+
+module.exports.test_remove_common_prefixes_out = [
+    "daily -> English -> Grammar -> other/another",
+    "------------------- Listenings -> https://www.englishclub.com/listening/dictation.htm",
+    "------------------- Pronunciation -> engfluent.com > English-pronunciation-exercises-main-sounds",
+    "------------------- Reading -> Soft Skills (50+)",
+    "-------- Full-Stack -> Angular.io -> 3. Overview of Architecture",
+    "---------------------- Cucumber",
+    "---------------------- Express -> Advanced -> Routing",
+    "---------------------- Native Script -> Tutorial -> Install",
+    "---------------------- ReactJS -> docs -> quickstart -> Introducing JSX",
+    "---------------------- Testing -> Integration Tests",
+    "--------------------------------- http://pioneerjs.com/",
+    "---------------------- Tools -> SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)",
+    "------------------------------- WebPack -> Introduction",
+    "------------------------------- gremlins.js",
+    "ideas -> ambal -> clone to excel",
+    "-------- freemind-todo -> show no more than N in one subcategory"
+];

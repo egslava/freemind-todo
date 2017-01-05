@@ -49,10 +49,60 @@ function mark_ok(tasks, marked){
     });
 }
 
-function checkTasksPrompt(message, tasks, tree, callback) {
+
+function _commonPrefixLength(str1, str2){
+    let i = 0;
+    for(i = 0; i < Math.min(str1.length, str2.length); i++){
+        if (str1[i] != str2[i]) break;
+    }
+
+    for(i; i > 0; i--){
+        if (str1[i] == " ") break;
+    }
+
+    return i;
+}
+
+
+
+/**
+ *
+ * @param lines  ['daily -> Full-Stack -> Angular.io',
+                  'daily -> Full-Stack -> Cucumber']
+ @returns ['daily -> Full-Stack -> Angular.io',
+           '---------------------- Cucumber']
+ */
+function removeCommonPrefixes(lines, symbol){
+    const result = lines.sort().slice();
+    for (let i = 0; i < lines.length; i++){
+        for (let j = i+1; j < lines.length; j++){
+            const prefix = _commonPrefixLength(lines[i], lines[j])
+            if (prefix > 0){
+                result[j] = symbol.repeat(prefix) + lines[j].substring(prefix);
+            }
+        }
+    }
+    return result;
+}
+
+function getHierachyLabels(tasks, tree){
+    // console.log(JSON.stringify(tasks));
+    // console.log(JSON.stringify(tree));
     const labels = tasks.map( (task) => {
         return { name: Node.getPath(tree, task.ID).map(node => node['$'].TEXT).join(" -> "), value: task.ID}
+    }).sort( (_1, _2) => _1.name >= _2.name );
+
+    const   names = labels.map(it => it.name),
+        namesHierachy = removeCommonPrefixes(names, "–");
+    return labels.map((label, index) => {
+        return {name: namesHierachy[index], value: label.value}
     });
+}
+
+function checkTasksPrompt(message, tasks, tree, callback) {
+    const labels = getHierachyLabels(tasks, tree);
+
+    console.log(JSON.stringify(labels));
     labels.push(new inquirer.Separator());
     inquirer.prompt([
         {
@@ -75,9 +125,12 @@ function checkTasksPrompt(message, tasks, tree, callback) {
     }).catch(err => console.log(err.stack));
 }
 
+
+
 module.exports.checkTasksPrompt = checkTasksPrompt;
 module.exports.mark_ok = mark_ok;
-
+module.exports.removeCommonPrefixes = removeCommonPrefixes;
+module.exports.getHierachyLabels = getHierachyLabels;
 
 // var Sparkline = require('clui').Sparkline;
 // var reqsPerSec = [10, 12, 3, 7, 12, 9, 23, 10, 9, 19, 16, 18, 12, 12];
