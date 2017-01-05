@@ -102,7 +102,6 @@ function getHierachyLabels(tasks, tree, symbol){
 function checkTasksPrompt(message, tasks, tree, callback) {
     const labels = getHierachyLabels(tasks, tree, "·");
 
-    console.log(JSON.stringify(labels));
     labels.push(new inquirer.Separator());
     inquirer.prompt([
         {
