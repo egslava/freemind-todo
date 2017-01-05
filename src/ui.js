@@ -85,7 +85,7 @@ function removeCommonPrefixes(lines, symbol){
     return result;
 }
 
-function getHierachyLabels(tasks, tree){
+function getHierachyLabels(tasks, tree, symbol){
     // console.log(JSON.stringify(tasks));
     // console.log(JSON.stringify(tree));
     const labels = tasks.map( (task) => {
@@ -93,14 +93,14 @@ function getHierachyLabels(tasks, tree){
     }).sort( (_1, _2) => _1.name >= _2.name );
 
     const   names = labels.map(it => it.name),
-        namesHierachy = removeCommonPrefixes(names, "–");
+        namesHierachy = removeCommonPrefixes(names, symbol);
     return labels.map((label, index) => {
         return {name: namesHierachy[index], value: label.value}
     });
 }
 
 function checkTasksPrompt(message, tasks, tree, callback) {
-    const labels = getHierachyLabels(tasks, tree);
+    const labels = getHierachyLabels(tasks, tree, "·");
 
     console.log(JSON.stringify(labels));
     labels.push(new inquirer.Separator());

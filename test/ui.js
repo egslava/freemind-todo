@@ -123,9 +123,9 @@ describe("CLI-related", function () {
         const out = [
             {name:"first -> one", value: "ID_564200090"},
             {name:"–––––––– two", value: "ID_1532930210"}
-        ]
+        ];
 
-        expect(ui.getHierachyLabels(_in_tasks, _tree)).to.deep.equals(out);
+        expect(ui.getHierachyLabels(_in_tasks, _tree, "–")).to.deep.equals(out);
 
     });
 });
