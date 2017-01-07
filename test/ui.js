@@ -3,12 +3,19 @@
  * Created by egslava on 28/12/2016.
  */
 
+const path = require('path');
+
 let data = require('./ui.test_data'),
     ui = require('../src/ui');
 
 let expect = require('chai').expect;
 
 describe("CLI-related", function () {
+    it("reads config", function(){
+        ui._getPackageJson();
+        // no expectations - just should finish without any exceptions
+    });
+
     it("marks chosen tasks in JSON ('ok' icon is always first)", function () {
         const mm = data.test_mark_ok1_mindmap['map'];
         ui.mark_ok(mm, data.test_mark_ok1_userinput);

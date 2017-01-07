@@ -99,7 +99,7 @@ function getHierachyLabels(tasks, tree, symbol){
     });
 }
 
-function checkTasksPrompt(message, tasks, tree, callback) {
+function checkTasksPrompt(message, tasks, tree, rows, callback) {
     const labels = getHierachyLabels(tasks, tree, "·");
 
     labels.push(new inquirer.Separator());
@@ -109,7 +109,7 @@ function checkTasksPrompt(message, tasks, tree, callback) {
             message: message,
             name: 'tasks',
             choices: labels,
-            pageSize: 18,
+            pageSize: rows,
             validate: answer =>{
                 if (answer.length < 1) {
                     return 'You must choose at least one topping.';
@@ -125,7 +125,14 @@ function checkTasksPrompt(message, tasks, tree, callback) {
 }
 
 
+function getPackageJson(){
+    const path = require('path');
+    const root = path.dirname(__dirname);
+    return require(path.join(root, 'package.json'));
+};
 
+module.exports._getPackageJson = getPackageJson;
+module.exports.package_json = getPackageJson();
 module.exports.checkTasksPrompt = checkTasksPrompt;
 module.exports.mark_ok = mark_ok;
 module.exports.removeCommonPrefixes = removeCommonPrefixes;

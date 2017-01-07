@@ -4,7 +4,8 @@
 
 const
     Node = require('./src/node'),
-    ui = require('./src/ui');
+    ui = require('./src/ui'),
+    Commander = require('commander');
 
 const
     fs = require('fs'),
@@ -14,6 +15,11 @@ const
 const mindmap = 'sosimple.mm';
 
 const hint = "There're your current tasks. Please, mark them after completion when you're done.";
+
+Commander
+    .version(ui.package_json.version)
+    .option('-r, --rows [number]', null, process.stdout.rows - 4)
+    .parse(process.argv);
 
 fs.readFile(mindmap, (err, xmlString) => {
     if (err) throw err;
@@ -27,7 +33,7 @@ fs.readFile(mindmap, (err, xmlString) => {
 
         const leafs = Node.leafs( _in );
 
-        ui.checkTasksPrompt(hint, leafs, _in, ()=>{
+        ui.checkTasksPrompt(hint, leafs, _in, Commander.rows, ()=>{
             // console.log('1');
             const xml = Node.xmler.buildObject(json);
 

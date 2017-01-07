@@ -6,10 +6,10 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
-  "bin":{
-      "freemind-mm": "./index.js"
-  }
-  ,"repository": {
+  "bin": {
+    "freemind-mm": "./index.js"
+  },
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/egslava/freemind-todo.git"
   },
@@ -27,9 +27,11 @@
   "homepage": "https://github.com/egslava/freemind-todo#readme",
   "dependencies": {
     "chai": "^3.5.0",
+    "commander": "^2.9.0",
     "inquirer": "^2.0.0",
     "instance-of": "^1.0.5",
     "mocha": "^3.2.0",
+    "path": "^0.12.7",
     "xml2js": "^0.4.17"
   }
 }
