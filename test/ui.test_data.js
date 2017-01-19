@@ -178,3 +178,40 @@ module.exports.test_remove_common_prefixes_out = [
     "ideas -> ambal -> clone to excel",
     "-------- freemind-todo -> show no more than N in one subcategory"
 ];
+
+module.exports.test_issue4_expectations_labels = [{
+    name: 'daily -> English -> Vocab -> In Use -> Connecting and linking words',
+    value: 'ID_908315319'
+}, {
+    name: '······································ Countables and uncountables -> 29. Uncountable nouns',
+    value: 'ID_678187824'
+}, {
+    name: '······································ Word Formation -> 8. Suffixes (-er, -or, -ness)',
+    value: 'ID_968567900'
+}, {
+    name: '···········································s and pronunciation',
+    value: 'ID_1070805622'
+}, {
+    name: '········ Full-Stack -> Express -> Basics -> Installing',
+    value: 'ID_307843554'
+}, {
+    name: '······················ ReactJS -> docs -> quickstart -> Installation',
+    value: '45.183050860655726'
+}, {
+    name: '······················ Testing -> Integration Tests',
+    value: 'ID_68323115'
+}, {
+    name: '································· http://pioneerjs.com/',
+    value: 'ID_332458271'
+}, {
+    name: '······················ Tools -> SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)',
+    value: 'ID_481599318'
+}, {
+    name: '······························· WebPack -> Introduction',
+    value: '67.90092089922801'
+}, {
+    name: '······························· gremlins.js',
+    value: 'ID_948100920'
+}];
+
+// module.exports.test_

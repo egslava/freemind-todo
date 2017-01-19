@@ -135,4 +135,54 @@ describe("CLI-related", function () {
         expect(ui.getHierachyLabels(_in_tasks, _tree, "–")).to.deep.equals(out);
 
     });
+
+    it("processes issue4 with hierachy", function (next) {
+        const Node = require('../src/node');
+        const fs = require('fs');
+        const xml2js = require('xml2js'), parseXml = xml2js.parseString;
+
+        fs.readFile('./test/maps/issue4.mm', (err, xmlString) => {
+            if (err) throw err;
+
+            parseXml(xmlString, (err, json) => {
+                if (err){ throw err}
+
+                const _in = json['map'];
+                const nodes = Node.nodeList(_in);
+                // console.log(JSON.stringify(nodes));
+                Node.fixMeta(nodes);
+
+                const leafs = Node.leafs( _in );
+
+                // ui.checkTasksPrompt(hint, leafs, _in, Commander.rows, ()=>{
+                    // console.log('1');
+                // console.log(leafs);
+                const labels = ui.getHierachyLabels(leafs, _in, "·");
+                // console.log(labels.sort( (lbl1, lbl2) => lbl1.name < lbl2.name));
+
+                // console.log(labels.map(label=>label.name));
+                // assert that labels id are the same as
+                // const leafIds = leafs.map( leaf => leaf[`ID`]).sort();
+                // const labelIds = labels.map( label => label[`value`]).sort();
+                // console.log(labelIds);
+                // console.log(leafIds);
+                expect(labels).to.deep.equal(data.test_issue4_expectations_labels);
+                Node.clearMeta(nodes);
+                next();
+                // console.log(labels);
+                    // const xml = Node.xmler.buildObject(json);
+
+                    // fs.writeFile(mindmap, xml, null, (data, err)=>{
+                    //     // console.log(err);
+                    //
+                    // });
+                // });
+
+
+                // console.log(xml);
+            });
+        });
+
+        // const labels = ui.getHierachyLabels(tasks, tree, "·");
+    });
 });
