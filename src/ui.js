@@ -73,7 +73,7 @@ function _commonPrefixLength(str1, str2){
            '---------------------- Cucumber']
  */
 function removeCommonPrefixes(lines, symbol){
-    const result = lines.sort().slice();
+    const result = lines.slice(); //sort().slice(); #
     for (let i = 0; i < lines.length; i++){
         for (let j = i+1; j < lines.length; j++){
             const prefix = _commonPrefixLength(lines[i], lines[j]);
@@ -85,6 +85,16 @@ function removeCommonPrefixes(lines, symbol){
     return result;
 }
 
+function strcmp(str1, str2){
+    if (str1 < str2){
+        return -1;
+    } else if (str2 > str1){
+        return 1;
+    }
+
+    return 0;
+}
+
 function getHierachyLabels(tasks, tree, symbol){
     // console.log(JSON.stringify(tasks));
     // console.log(JSON.stringify(tree));
@@ -92,15 +102,24 @@ function getHierachyLabels(tasks, tree, symbol){
     // console.log(tasks);
 
     const labels = tasks.map( (task, ind) => {
-        return { name: Node.getPath(tree, task.ID).map(node => node['$'].TEXT).join(" -> "), value: task.ID, index: ind}
-    }).sort( (_1, _2) => _1.name >= _2.name );
+        return {
+            name:
+                Node.getPath(tree, task.ID)
+                    .map(node => node['$'].TEXT)
+                    .join(" -> "),
+            value: task.ID,
+            index: ind}
+    }).sort( (_1, _2) => _1.name.localeCompare(_2.name) );
 
     // console.log(labels);
 
     const   names = labels.map(it => it.name),
         namesHierachy = removeCommonPrefixes(names, symbol);
     return labels.map((label, index) => {
-        return {name: namesHierachy[index], value: label.value}
+        return {
+            name: namesHierachy[index],
+            value: label.value
+        }
     });
 }
 

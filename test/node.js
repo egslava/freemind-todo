@@ -88,4 +88,61 @@ describe("MindMap Leaf Extractor (TODO-like)", function () {
         node.clearMeta(list);
         expect(paths).to.deep.equal(data.map_without_ids_out);
     });
+
+    it("works even if some nodes don't have IDs (issue 4 fix)", function(next){
+        const Node = require('../src/node');
+        const fs = require('fs');
+        const xml2js = require('xml2js'), parseXml = xml2js.parseString;
+        const ui = require('../src/ui');
+
+        fs.readFile('./test/maps/issue4.mm', (err, xmlString) => {
+            if (err) throw err;
+
+            parseXml(xmlString, (err, json) => {
+                if (err){ throw err}
+
+                const _in = json['map'];
+                const nodes = Node.nodeList(_in);
+                // console.log(JSON.stringify(nodes));
+                Node.fixMeta(nodes);
+
+                const leafs = Node.leafs( _in );
+
+                // ui.checkTasksPrompt(hint, leafs, _in, Commander.rows, ()=>{
+                // console.log('1');
+                // console.log(leafs);
+                const labels = leafs.map( (task, ind) => {
+                    return {
+                        name:
+                            Node.getPath(_in, task.ID)
+                                .map(node => node['$'].TEXT)
+                                .join(" -> "),
+                        value: task.ID,
+                        index: ind}
+                }).sort( (_1, _2) => _1.name >= _2.name );
+                // console.log(labels.sort( (lbl1, lbl2) => lbl1.name < lbl2.name));
+
+                // console.log(labels.map(label=>label.name));
+                // assert that labels id are the same as
+                // const leafIds = leafs.map( leaf => leaf[`ID`]).sort();
+                // const labelIds = labels.map( label => label[`value`]).sort();
+                // console.log(labelIds);
+                // console.log(leafIds);
+                expect(labels).to.deep.equal(data.map_without_ids_fix_issue4);
+                Node.clearMeta(nodes);
+                next();
+                // console.log(labels);
+                // const xml = Node.xmler.buildObject(json);
+
+                // fs.writeFile(mindmap, xml, null, (data, err)=>{
+                //     // console.log(err);
+                //
+                // });
+                // });
+
+
+                // console.log(xml);
+            });
+        });
+    })
 });

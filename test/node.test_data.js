@@ -599,6 +599,52 @@ module.exports.map_without_ids = {
     }
 };
 
+module.exports.map_without_ids_fix_issue4 = [{
+    name: 'daily -> Full-Stack -> Testing -> http://pioneerjs.com/',
+    value: 'ID_332458271',
+    index: 5
+}, {
+    name: 'daily -> English -> Vocab -> In Use -> Word Formation -> 8. Suffixes (-er, -or, -ness)',
+    value: 'ID_968567900',
+    index: 0
+}, {
+    name: 'daily -> English -> Vocab -> In Use -> Connecting and linking words',
+    value: 'ID_908315319',
+    index: 2
+}, {
+    name: 'daily -> English -> Vocab -> In Use -> Countables and uncountables -> 29. Uncountable nouns',
+    value: 'ID_678187824',
+    index: 3
+}, {
+    name: 'daily -> English -> Vocab -> In Use -> Words and pronunciation',
+    value: 'ID_1070805622',
+    index: 1
+}, {
+    name: 'daily -> Full-Stack -> Express -> Basics -> Installing',
+    value: 'ID_307843554',
+    index: 4
+}, {
+    name: 'daily -> Full-Stack -> ReactJS -> docs -> quickstart -> Installation',
+    value: 'ID_1184550287',
+    index: 10
+}, {
+    name: 'daily -> Full-Stack -> Testing -> Integration Tests',
+    value: 'ID_68323115',
+    index: 6
+}, {
+    name: 'daily -> Full-Stack -> Tools -> SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)',
+    value: 'ID_481599318',
+    index: 8
+}, {
+    name: 'daily -> Full-Stack -> Tools -> WebPack -> Introduction',
+    value: '67.90092089922801',
+    index: 7
+}, {
+    name: 'daily -> Full-Stack -> Tools -> gremlins.js',
+    value: 'ID_948100920',
+    index: 9
+}];
+
 module.exports.map_without_ids_list = [{
     "CREATED": "1482728118177",
     "ID": "ID_1405131310",
@@ -612,7 +658,8 @@ module.exports.map_without_ids_list = [{
     "CREATED": "1483311814989",
     "MODIFIED": "1483311814993",
     "TEXT": "two"
-}]
+}];
+
 module.exports.map_without_ids_leaves = [{
     "CREATED": "1483311814983",
     "MODIFIED": "1483311814988",

@@ -161,20 +161,20 @@ module.exports.test_remove_common_prefixes_in = `
         `.trim().replace(/^\s*/gm, "").split("\n");
 
 module.exports.test_remove_common_prefixes_out = [
-    "daily -> English -> Grammar -> other/another",
-    "------------------- Listenings -> https://www.englishclub.com/listening/dictation.htm",
+    "daily -> Full-Stack -> Tools -> WebPack -> Introduction",
+    "------------------------------- SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)",
+    "-------- English -> Listenings -> https://www.englishclub.com/listening/dictation.htm",
     "------------------- Pronunciation -> engfluent.com > English-pronunciation-exercises-main-sounds",
+    "------------------- Grammar -> other/another",
     "------------------- Reading -> Soft Skills (50+)",
-    "-------- Full-Stack -> Angular.io -> 3. Overview of Architecture",
-    "---------------------- Cucumber",
+    "-------- Full-Stack -> Native Script -> Tutorial -> Install",
+    "---------------------- Angular.io -> 3. Overview of Architecture",
     "---------------------- Express -> Advanced -> Routing",
-    "---------------------- Native Script -> Tutorial -> Install",
+    "---------------------- Testing -> http://pioneerjs.com/",
+    "--------------------------------- Integration Tests",
+    "---------------------- Cucumber",
+    "---------------------- Tools -> gremlins.js",
     "---------------------- ReactJS -> docs -> quickstart -> Introducing JSX",
-    "---------------------- Testing -> Integration Tests",
-    "--------------------------------- http://pioneerjs.com/",
-    "---------------------- Tools -> SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)",
-    "------------------------------- WebPack -> Introduction",
-    "------------------------------- gremlins.js",
     "ideas -> ambal -> clone to excel",
     "-------- freemind-todo -> show no more than N in one subcategory"
 ];
@@ -196,22 +196,21 @@ module.exports.test_issue4_expectations_labels = [{
     value: 'ID_307843554'
 }, {
     name: '······················ ReactJS -> docs -> quickstart -> Installation',
-    value: '45.183050860655726'
+    value: 'ID_1184550287'
 }, {
-    name: '······················ Testing -> Integration Tests',
+    name: '······················ Testing -> http://pioneerjs.com/',
+    value: 'ID_332458271'
+},{
+    name: '································· Integration Tests',
     value: 'ID_68323115'
 }, {
-    name: '································· http://pioneerjs.com/',
-    value: 'ID_332458271'
-}, {
-    name: '······················ Tools -> SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)',
+    name: '······················ Tools -> gremlins.js',
+    value: 'ID_948100920'
+},{
+    name: '······························· SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)',
     value: 'ID_481599318'
 }, {
     name: '······························· WebPack -> Introduction',
     value: '67.90092089922801'
-}, {
-    name: '······························· gremlins.js',
-    value: 'ID_948100920'
 }];
-
 // module.exports.test_

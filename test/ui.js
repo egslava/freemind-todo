@@ -5,10 +5,10 @@
 
 const path = require('path');
 
-let data = require('./ui.test_data'),
+const data = require('./ui.test_data'),
     ui = require('../src/ui');
 
-let expect = require('chai').expect;
+const expect = require('chai').expect;
 
 describe("CLI-related", function () {
     it("reads config", function(){
@@ -141,45 +141,24 @@ describe("CLI-related", function () {
         const fs = require('fs');
         const xml2js = require('xml2js'), parseXml = xml2js.parseString;
 
+        // this.skip();
         fs.readFile('./test/maps/issue4.mm', (err, xmlString) => {
             if (err) throw err;
 
             parseXml(xmlString, (err, json) => {
                 if (err){ throw err}
 
-                const _in = json['map'];
-                const nodes = Node.nodeList(_in);
-                // console.log(JSON.stringify(nodes));
+                const   _in = json['map'],
+                        nodes = Node.nodeList(_in);
+
                 Node.fixMeta(nodes);
 
-                const leafs = Node.leafs( _in );
-
-                // ui.checkTasksPrompt(hint, leafs, _in, Commander.rows, ()=>{
-                    // console.log('1');
-                // console.log(leafs);
-                const labels = ui.getHierachyLabels(leafs, _in, "·");
-                // console.log(labels.sort( (lbl1, lbl2) => lbl1.name < lbl2.name));
-
-                // console.log(labels.map(label=>label.name));
-                // assert that labels id are the same as
-                // const leafIds = leafs.map( leaf => leaf[`ID`]).sort();
-                // const labelIds = labels.map( label => label[`value`]).sort();
-                // console.log(labelIds);
-                // console.log(leafIds);
+                const leafs = Node.leafs( _in ),
+                    labels = ui.getHierachyLabels(leafs, _in, "·");
+                // expect(JSON.stringify(labels, ' ', 2)).to.equal(JSON.stringify(data.test_issue4_expectations_labels, ' ', 3));
                 expect(labels).to.deep.equal(data.test_issue4_expectations_labels);
                 Node.clearMeta(nodes);
                 next();
-                // console.log(labels);
-                    // const xml = Node.xmler.buildObject(json);
-
-                    // fs.writeFile(mindmap, xml, null, (data, err)=>{
-                    //     // console.log(err);
-                    //
-                    // });
-                // });
-
-
-                // console.log(xml);
             });
         });
 
