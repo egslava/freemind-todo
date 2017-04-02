@@ -3,17 +3,18 @@
 [![Test Coverage](https://codeclimate.com/github/egslava/freemind-todo/badges/coverage.svg)](https://codeclimate.com/github/egslava/freemind-todo/coverage)
 [![Join the chat at https://gitter.im/freemind-todo/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/freemind-todo/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A simple but powerful TODO for your FreeMind mindmaps. Some bad explanation you can [see here](https://youtu.be/Dc8JGPd7ZkA).
+# Installation and using
+Installation: `npm install -g freemind-todo`
 
-Any feedback is VERY welcome. Write issues, contact me by email. Feel free to ask any questions. Thank you for you attention!
+Using: `freemind-todo name_of_mindmap.mm` or just `freemind-todo` from the directory with `todo.mm`.
 
-NEW VIDEO. Only 40 secs:
-
-
+# What's it?
+40 secs video:
 [![FreeMind TODO - Trello-like TODO list for FreeMind](https://i.ytimg.com/vi/ZLzEKCgTwFU/hqdefault.jpg)](https://youtu.be/ZLzEKCgTwFU)
 
-Description
-=========
+It's a very simple TODO-generator from super complex (in my case more than 800 nodes) mind maps. 
+
+The next text - is just a video description from YouTube. You can don't read it :-)
 
 The satellite program for FreeMind from 2016.
 When Trello or Coggle is not enough but still need something simple.
