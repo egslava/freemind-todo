@@ -10,6 +10,7 @@ Using: `freemind-todo name_of_mindmap.mm` or just `freemind-todo` from the direc
 
 # What's it?
 40 secs video:
+
 [![FreeMind TODO - Trello-like TODO list for FreeMind](https://i.ytimg.com/vi/ZLzEKCgTwFU/hqdefault.jpg)](https://youtu.be/ZLzEKCgTwFU)
 
 It's a very simple TODO-generator from super complex (in my case more than 800 nodes) mind maps. 
