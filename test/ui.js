@@ -11,6 +11,15 @@ const data = require('./ui.test_data'),
 const expect = require('chai').expect;
 
 describe("CLI-related", function () {
+    it("binary name is actual (" + ui.BIN_NAME + ")", function(){
+        ui._getPackageJson();
+
+        const freemind_todo = Object.keys(ui.package_json.bin)[0];
+
+        expect(ui.BIN_NAME).to.equal( freemind_todo );
+        // no expectations - just should finish without any exceptions
+    });
+
     it("reads config", function(){
         ui._getPackageJson();
         // no expectations - just should finish without any exceptions

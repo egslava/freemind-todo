@@ -142,7 +142,7 @@ function checkTasksPrompt(message, tasks, tree, rows, callback) {
             }
         }
     ]).then( (answers) => {
-        console.log(JSON.stringify(answers, null, '  '));
+        // console.log(JSON.stringify(answers, null, '  '));
 
         mark_ok(tree, answers);
         callback();
@@ -156,6 +156,7 @@ function getPackageJson(){
     return require(path.join(root, 'package.json'));
 };
 
+module.exports.BIN_NAME = "freemind-todo";
 module.exports._getPackageJson = getPackageJson;
 module.exports.package_json = getPackageJson();
 module.exports.checkTasksPrompt = checkTasksPrompt;
