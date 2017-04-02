@@ -85,14 +85,29 @@ function removeCommonPrefixes(lines, symbol){
     return result;
 }
 
+/**
+ * This function is done ESPECIALLY to satisfy Travis CI. Dunno why but string comparison on my laptop
+ * and on Travis CI goes different way so it fails test.
+ *
+ * Please! Don't use _localCompare_
+ */
 function strcmp(str1, str2){
-    if (str1 < str2){
-        return -1;
-    } else if (str2 > str1){
-        return 1;
-    }
-
+    if (str1.toString() < str2.toString()) return -1;
+    if (str1.toString() > str2.toString()) return 1;
     return 0;
+
+    // var a = str1.toString(), b = str2.toString();
+    // for (var i=0,n=Math.max(a.length, b.length); i<n && a.charAt(i) === b.charAt(i); ++i);
+    // if (i === n) return 0;
+    // return a.charAt(i) < b.charAt(i) ? -1 : 1;
+
+    // if (str1 < str2){
+    //     return -1;
+    // } else if (str2 > str1){
+    //     return 1;
+    // }
+
+    // return 0;
 }
 
 function getHierachyLabels(tasks, tree, symbol){
@@ -109,7 +124,10 @@ function getHierachyLabels(tasks, tree, symbol){
                     .join(" -> "),
             value: task.ID,
             index: ind}
-    }).sort( (_1, _2) => _1.name.localeCompare(_2.name) );
+    }).sort(
+        (_1, _2) => strcmp(_1.name, _2.name)
+        // (_1, _2) => _1.name.localeCompare(_2.name)
+    );
 
     // console.log(labels);
 
