@@ -198,19 +198,21 @@ module.exports.test_issue4_expectations_labels = [{
     name: '······················ ReactJS -> docs -> quickstart -> Installation',
     value: 'ID_1184550287'
 }, {
-    name: '······················ Testing -> http://pioneerjs.com/',
-    value: 'ID_332458271'
-},{
-    name: '································· Integration Tests',
+    name: '······················ Testing -> Integration Tests',
     value: 'ID_68323115'
 }, {
-    name: '······················ Tools -> gremlins.js',
-    value: 'ID_948100920'
-},{
-    name: '······························· SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)',
+    name: '································· http://pioneerjs.com/',
+    value: 'ID_332458271'
+}, {
+    name: '······················ Tools -> SystemJS -> Package Management (https://www.youtube.com/watch?v=szJjsduHBQQ)',
     value: 'ID_481599318'
 }, {
     name: '······························· WebPack -> Introduction',
     value: '67.90092089922801'
-}];
+}, {
+    name: '······························· gremlins.js',
+    value: 'ID_948100920'
+},
+
+];
 // module.exports.test_
